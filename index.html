@@ -744,7 +744,24 @@
       <!-- GALLERY -->
       <section class="section scroll-animate">
         <h2 class="display" style="font-size:22px; margin-bottom: 12px;">Screenshots</h2>
-        <div id="gallery" class="grid gallery"></div>
+        <div id="gallery" class="grid gallery">
+          <div class="thumb scroll-animate">
+            <img src="lac.webp" alt="LAC Screenshot" />
+          </div>
+          <div class="thumb scroll-animate">
+            <img src="bgmi.webp" alt="BGMI Screenshot" />
+          </div>
+          <div class="thumb scroll-animate">
+            <img src="codm.webp" alt="CoD Mobile Screenshot" />
+          </div>
+          <div class="thumb scroll-animate">
+            <img src="screenshort 2.jpg" alt="Screenshot 2" />
+          </div>
+          <div class="thumb scroll-animate">
+            <img src="icon.jpg" alt="Elite Icon" />
+          </div>
+          <!-- You can add more images here if needed -->
+        </div>
       </section>
 
       <!-- CREDITS -->
@@ -825,19 +842,7 @@
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Gallery
-    (function(){
-      const wrap = document.getElementById("gallery");
-      ASSETS.gallery.forEach(src => {
-        const d = document.createElement("div");
-        d.className = "thumb scroll-animate";
-        const img = new Image();
-        img.src = src;
-        img.alt = "App screenshot";
-        d.appendChild(img);
-        wrap.appendChild(d);
-      });
-    })();
+    // Gallery is now hardcoded in HTML; removed dynamic population
 
     // Configurator (mock only)
     const STORAGE_KEY = "elite-config-standalone";
