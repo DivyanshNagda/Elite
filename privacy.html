@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — Elite Android Game Booster</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../Images/icon%20%20cut.jpg" />
+  <style>
+    :root{
+      --bg: #0F0F0F;
+      --card: #0B0B0C;
+      --text: #D1D5DB;
+      --muted: #9CA3AF;
+      --muter: #6B7280;
+      --border: rgba(255,255,255,0.10);
+      --primary: #F59E0B; /* Amber */
+      --secondary: #10B981; /* Emerald */
+      --ring: rgba(255,255,255,0.08);
+      --radius: 12px;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+    a{
+      color: inherit;
+      text-decoration: none;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(6px);
+      background: rgba(0,0,0,0.25);
+      border-bottom: 1px solid var(--border);
+      animation: fadeInDown 0.6s ease-out;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      overflow:hidden;
+      animation: pulse 2s infinite;
+    }
+    .brand-icon img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    h1,h2,h3,.display{
+      font-family: Orbitron, Inter, sans-serif;
+      letter-spacing: 0.2px;
+    }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border: 1px solid transparent;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor:pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    .btn:hover::before {
+      left: 100%;
+    }
+    .btn-amber {
+      background: var(--primary);
+      color: #111;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+    .btn-amber:hover {
+      box-shadow: 0 10px 28px rgba(245,158,11,0.5);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      border-color: var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-2px);
+    }
+    .muted {
+      color: var(--muted);
+    }
+    .muter {
+      color: var(--muter);
+    }
+    .section {
+      padding: 12px 0 40px 0;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 0.6s ease-out;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+    .content-section {
+      margin-bottom: 24px;
+    }
+    .content-section h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .content-section p {
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .content-section ul {
+      margin-bottom: 12px;
+      padding-left: 20px;
+    }
+    .content-section li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .highlight-box {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    .highlight-box strong {
+      color: var(--primary);
+    }
+    .contact-info {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    .contact-info strong {
+      color: var(--secondary);
+    }
+    .last-updated {
+      text-align: center;
+      padding: 20px 0;
+      color: var(--muter);
+      font-size: 14px;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .back-link:hover {
+      color: var(--text);
+    }
+    footer{
+      border-top: 1px solid var(--border);
+      padding: 20px 0 40px 0;
+      color: var(--muter);
+    }
+    .flex {
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .right {
+      margin-left:auto;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="brand">
+          <div class="brand-icon" id="brandIcon">
+            <!-- icon injected by JS or fallback -->
+          </div>
+          <div class="display" style="font-weight:700;">Elite — Android Game Booster</div>
+        </div>
+        <div>
+          <a class="btn btn-amber" href="https://github.com/DivyanshNagda/EliteGaming/releases/latest" target="_blank" rel="noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="#111" stroke-width="2" stroke-linecap="round"/><path d="M7 10l5 5 5-5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg> Download — GitHub Releases
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <div class="container">
+      <!-- Back to Home -->
+      <section class="section" style="padding-top: 20px;">
+        <a href="index.html" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back to Home
+        </a>
+      </section>
+
+      <!-- Privacy Policy Content -->
+      <section class="section">
+        <div class="card">
+          <h1 class="card-title">Privacy Policy</h1>
+          <p class="muted">Last updated: <span id="lastUpdated"></span></p>
+          
+          <div class="content-section">
+            <h3>Introduction</h3>
+            <p>Welcome to Elite Android Game Booster ("Elite", "we", "our", or "us"). We are committed to protecting your privacy and ensuring transparency about how we handle your information. This Privacy Policy explains how we collect, use, and protect your data when you use our Android application.</p>
+          </div>
+
+          <div class="content-section">
+            <h3>Information We Collect</h3>
+            <p>Elite is designed with privacy in mind and collects minimal information:</p>
+            <ul>
+              <li><strong>Device Information:</strong> Basic device specifications (resolution, DPI settings) to optimize game performance</li>
+              <li><strong>App Usage Data:</strong> Settings and preferences you configure within the app</li>
+              <li><strong>Performance Metrics:</strong> Anonymous performance data to improve app functionality</li>
+            </ul>
+            <p><strong>We do NOT collect:</strong> Personal information, browsing history, game content, or any data that could identify you personally.</p>
+          </div>
+
+          <div class="content-section">
+            <h3>How We Use Your Information</h3>
+            <p>The limited information we collect is used exclusively for:</p>
+            <ul>
+              <li>Providing and improving the Elite app functionality</li>
+              <li>Optimizing game performance settings for your device</li>
+              <li>Fixing bugs and enhancing user experience</li>
+              <li>Ensuring app stability and reliability</li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h3>Data Storage and Security</h3>
+            <p>Your data is stored locally on your device and is not transmitted to external servers unless you explicitly choose to share crash reports or feedback. We implement appropriate security measures to protect any data we may receive.</p>
+          </div>
+
+          <div class="content-section">
+            <h3>Third-Party Services</h3>
+            <p>Elite integrates with the following third-party services:</p>
+            <ul>
+              <li><strong>Shizuku:</strong> For system-level permissions (no data shared)</li>
+              <li><strong>GitHub:</strong> For app distribution and updates (handled by GitHub's privacy policy)</li>
+            </ul>
+            <p>We do not share your personal information with any third-party services.</p>
+          </div>
+
+          <div class="content-section">
+            <h3>Your Rights and Choices</h3>
+            <p>You have the right to:</p>
+            <ul>
+              <li>Access any data we may have about you</li>
+              <li>Request deletion of your data</li>
+              <li>Opt out of any data collection (though this may limit app functionality)</li>
+              <li>Contact us with privacy concerns</li>
+            </ul>
+          </div>
+
+          <div class="highlight-box">
+            <strong>Important Note:</strong> Elite requires Shizuku permissions to function properly. These permissions are used solely for device optimization and are not used to collect or transmit personal data. All operations are performed locally on your device.
+          </div>
+
+          <div class="content-section">
+            <h3>Children's Privacy</h3>
+            <p>Elite is not intended for use by children under 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately.</p>
+          </div>
+
+          <div class="content-section">
+            <h3>Changes to This Privacy Policy</h3>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes.</p>
+          </div>
+
+          <div class="contact-info">
+            <h3>Contact Us</h3>
+            <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
+            <ul>
+              <li><strong>GitHub:</strong> <a href="https://github.com/DivyanshNagda/EliteGaming" target="_blank" rel="noreferrer">github.com/DivyanshNagda/EliteGaming</a></li>
+              <li><strong>Issues:</strong> <a href="https://github.com/DivyanshNagda/EliteGaming/issues" target="_blank" rel="noreferrer">GitHub Issues</a></li>
+            </ul>
+          </div>
+
+          <div class="last-updated">
+            <p>This Privacy Policy is effective as of the date listed above and will remain in effect except with respect to any changes in its provisions in the future.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container flex" style="justify-content: space-between; flex-wrap: wrap;">
+      <div>© <span id="year"></span> Elite. All rights reserved.</div>
+      <div class="flex">
+        <a class="muter" href="index.html">Home</a>
+        <span>·</span>
+        <a class="muter" href="https://github.com/DivyanshNagda/EliteGaming/releases/latest" target="_blank" rel="noreferrer">Releases</a>
+        <span>·</span>
+        <a class="muter" href="https://github.com/DivyanshNagda" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Brand icon
+    (function(){
+      const el = document.getElementById("brandIcon");
+      const img = new Image();
+      img.src = "../Images/icon%20%20cut.jpg";
+      img.alt = "Elite Icon";
+      img.onerror = () => {
+        el.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
+      };
+      img.onload = () => {
+        el.innerHTML = "";
+        el.appendChild(img);
+      };
+    })();
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Last updated date
+    document.getElementById("lastUpdated").textContent = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  </script>
+</body>
+</html>

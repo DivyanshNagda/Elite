@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elite — Android Game Booster</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../Images/icon%20%20cut.jpg" />
+  <style>
+    :root{
+      --bg: #0F0F0F;
+      --card: #0B0B0C;
+      --text: #D1D5DB;
+      --muted: #9CA3AF;
+      --muter: #6B7280;
+      --border: rgba(255,255,255,0.10);
+      --primary: #F59E0B; /* Amber */
+      --secondary: #10B981; /* Emerald */
+      --ring: rgba(255,255,255,0.08);
+      --radius: 12px;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+    a{
+      color: inherit;
+      text-decoration: none;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(6px);
+      background: rgba(0,0,0,0.25);
+      border-bottom: 1px solid var(--border);
+      animation: fadeInDown 0.6s ease-out;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      overflow:hidden;
+      animation: pulse 2s infinite;
+    }
+    .brand-icon img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    h1,h2,h3,.display{
+      font-family: Orbitron, Inter, sans-serif;
+      letter-spacing: 0.2px;
+    }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border: 1px solid transparent;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor:pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    .btn:hover::before {
+      left: 100%;
+    }
+    .btn-amber {
+      background: var(--primary);
+      color: #111;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+    .btn-amber:hover {
+      box-shadow: 0 10px 28px rgba(245,158,11,0.5);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      border-color: var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-2px);
+    }
+    .badge {
+      display:inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 12px;
+      animation: fadeIn 0.5s ease-out;
+    }
+    .badge-emerald {
+      background: rgba(16,185,129,0.18);
+      color: #0B3F2F;
+      animation: bounceIn 0.8s ease-out;
+    }
+    .muted {
+      color: var(--muted);
+    }
+    .muter {
+      color: var(--muter);
+    }
+    .grid {
+      display:grid;
+      gap: 24px;
+    }
+    .grid-2 {
+      grid-template-columns: 1.1fr 1fr;
+    }
+    @media (max-width: 960px){
+      .grid-2{
+        grid-template-columns: 1fr;
+      }
+    }
+    .hero {
+      padding: 40px 0 16px 0;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(900px 450px at 80% -20%, rgba(245,158,11,0.35), rgba(16,185,129,0.08) 45%, rgba(0,0,0,0) 70%);
+      z-index: -1;
+      animation: fadeIn 1.5s ease-out;
+    }
+    .hero-visual {
+      position: relative;
+      border-radius: 16px;
+      height: 480px;
+      overflow:hidden;
+      background: radial-gradient(900px 450px at 80% -20%, rgba(245,158,11,0.35), rgba(16,185,129,0.08) 45%, rgba(0,0,0,0) 70%);
+      border: 1px solid var(--ring);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      animation: slideInRight 1s ease-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-phone {
+      width: 200px;
+      height: 400px;
+      background: #111317;
+      border-radius: 30px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 8px solid #000;
+      overflow: hidden;
+    }
+    .hero-phone::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 8px;
+      background: #333;
+      border-radius: 4px;
+    }
+    .hero-phone::after {
+      content: '';
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #333;
+    }
+    .hero-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0B0B0C, #1a1a1c);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-screen::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        transparent, 
+        rgba(245, 158, 11, 0.2), 
+        transparent 30%
+      );
+      animation: rotate 4s linear infinite;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 20px;
+    }
+    .hero-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+  background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .section {
+      padding: 12px 0 40px 0;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 0.6s ease-out;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .features {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 960px){
+      .features{
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px){
+      .features{
+        grid-template-columns: 1fr;
+      }
+    }
+    .list-num {
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .num {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      display:grid;
+      place-items:center;
+      flex-shrink: 0;
+      animation: bounce 1.5s infinite;
+    }
+    .num-amber {
+      background: rgba(245,158,11,0.18);
+      color: var(--primary);
+    }
+    .num-emerald{
+      background: rgba(16,185,129,0.18);
+      color: var(--secondary);
+    }
+    .gallery {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 960px){
+      .gallery{
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px){
+      .gallery{
+        grid-template-columns: 1fr;
+      }
+    }
+    .thumb {
+      height: 250px;
+      border-radius: 14px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:#000;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition: transform 0.25s ease;
+    }
+    .thumb:hover {
+      transform: translateY(-10px);
+    }
+    .thumb:hover img{
+      transform: scale(1.03);
+    }
+    .row-split {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 960px){
+      .row-split{
+        grid-template-columns: 1fr;
+      }
+    }
+    /* Configurator */
+    .config-stats {
+      display:flex;
+      gap:22px;
+      align-items:center;
+    }
+    .circle {
+      position: relative;
+      width: 112px;
+      height: 112px;
+      border-radius: 999px;
+      display:grid;
+      place-items:center;
+      animation: rotate 8s linear infinite;
+    }
+    .circle-ring {
+      position:absolute;
+      inset:0;
+      border-radius:999px;
+    }
+    .circle-inner {
+      position:absolute;
+      width: 96px;
+      height:96px;
+      border-radius:999px;
+      background:#0B0B0C;
+      box-shadow: inset 0 0 0 1px var(--ring);
+    }
+    .circle-text {
+      position:relative;
+      text-align:center;
+    }
+    .slider-row {
+      margin-top: 6px;
+    }
+    .range-row {
+      display:flex;
+      justify-content:space-between;
+      font-size:12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    input[type="range"]{
+      width:100%;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.1);
+      outline: none;
+  appearance: none;
+      -webkit-appearance: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(245,158,11,0.5);
+    }
+    .toggle {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background: rgba(255,255,255,0.06);
+      padding:12px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    .toggle:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateX(5px);
+    }
+    .toggles {
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 960px){
+      .toggles{
+        grid-template-columns: 1fr;
+      }
+    }
+    footer{
+      border-top: 1px solid var(--border);
+      padding: 20px 0 40px 0;
+      color: var(--muter);
+    }
+    .chip {
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      font-size:12px;
+    }
+    .flex {
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .right {
+      margin-left:auto;
+    }
+    .mt8{
+      margin-top:8px;
+    }
+    .mt12{
+      margin-top:12px;
+    }
+    .mt16{
+      margin-top:16px;
+    }
+    .mt20{
+      margin-top:20px;
+    }
+    .mb8{
+      margin-bottom:8px;
+    }
+    .mb12{
+      margin-bottom:12px;
+    }
+    .mb16{
+      margin-bottom:16px;
+    }
+    .mb24{
+      margin-bottom:24px;
+    }
+    .small{
+      font-size: 12px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      70% {
+        transform: scale(0.9);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Scroll animations */
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .scroll-animate.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="brand">
+          <div class="brand-icon" id="brandIcon">
+            <!-- icon injected by JS or fallback -->
+          </div>
+          <div class="display" style="font-weight:700;">Elite — Android Game Booster</div>
+        </div>
+        <div>
+          <a class="btn btn-amber" id="ctaReleases" href="https://github.com/DivyanshNagda/EliteGaming/releases/latest" target="_blank" rel="noreferrer">
+            <!-- Download icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="#111" stroke-width="2" stroke-linecap="round"/><path d="M7 10l5 5 5-5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg> Download — GitHub Releases
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Main -->
+  <main>
+    <div class="container">
+      <!-- HERO -->
+      <section class="hero grid grid-2">
+        <div class="scroll-animate">
+          <span class="badge badge-emerald">Shizuku-only • No Root Required</span>
+          <h1 class="display" style="font-size:44px; margin:16px 0 10px;">Squeeze More FPS. Save Battery. Stay Smooth.</h1>
+          <p class="muted" style="max-width: 56ch;"> Elite boosts game performance by dynamically applying custom resolution and smart DPI scaling. Start Shizuku, grant once, and play. </p>
+          <div class="flex mt12">
+            <a class="btn btn-amber" href="https://github.com/DivyanshNagda/EliteGaming/releases/latest" target="_blank" rel="noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="#111" stroke-width="2" stroke-linecap="round"/><path d="M7 10l5 5 5-5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg> Get Elite from Releases
+            </a>
+            <a class="small muter" href="https://shizuku.rikka.app/" target="_blank" rel="noreferrer">What is Shizuku?</a>
+          </div>
+          <div class="flex small mt8 muter">
+            <!-- shield icon -->
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"/></svg>
+            No permanent ADB • Lightweight <5MB
+          </div>
+        </div>
+        <div class="hero-visual scroll-animate">
+          <div class="hero-phone">
+            <div class="hero-screen">
+              <div class="hero-content">
+                <div class="hero-title">Elite Gaming</div>
+                <div class="hero-subtitle">Performance Optimizer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- RELEASES -->
+      <section class="section scroll-animate">
+        <div class="card">
+          <div class="flex">
+            <div class="card-title">Latest Release <span class="chip" id="relTag" style="display:none;"></span></div>
+            <div class="right flex">
+              <span class="chip" id="downloadsTotal" style="display:none;">Downloads: 0</span>
+              <button class="btn btn-outline small" id="btnRefresh">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 1 1-3-6.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M21 3v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Refresh
+              </button>
+            </div>
+          </div>
+          <div id="relMeta" class="small muter mt8"></div>
+          <div id="relBody" class="mt12" style="white-space: pre-line;"></div>
+          <button id="btnShowMore" class="btn btn-outline small mt8" style="display:none;">Show more</button>
+          <div id="assets" class="grid mt16" style="grid-template-columns: repeat(2, minmax(0,1fr)); gap:12px;"></div>
+          <div class="small muter mt8">Note: “Downloads this week” requires server-side analytics. Here we show total downloads from GitHub assets.</div>
+        </div>
+      </section>
+
+      <!-- CONFIGURATOR + GAMES (mock) -->
+      <section class="section scroll-animate">
+        <div class="row-split">
+          <div class="card">
+            <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke="currentColor" stroke-width="2"/></svg> Try the Configurator (Mock)</div>
+            <div class="mt12 config-stats">
+              <div class="circle">
+                <div id="fpsRing" class="circle-ring"></div>
+                <div class="circle-inner"></div>
+                <div class="circle-text">
+                  <div id="fpsVal" style="font-size:22px; font-weight:800;">+0%</div>
+                  <div class="small muter">FPS</div>
+                </div>
+              </div>
+              <div>
+                <div class="small muter">Native</div>
+                <div id="nativeRes" style="font-weight:700;">2160x1080</div>
+                <div class="small muter mt12">Tweaked</div>
+                <div id="tweakedRes" style="font-weight:700;">2160x1080</div>
+              </div>
+            </div>
+            <div class="slider-row">
+              <div class="range-row"><span>100%</span><span>50%</span></div>
+              <input id="scale" type="range" min="50" max="100" step="1" value="100" />
+              <div class="small muter mt8">Render scale: <span id="scaleVal">100</span>%</div>
+            </div>
+            <div class="toggles mt16">
+              <label class="toggle">
+                <span>Aggressive Low Memory Killer</span>
+                <input type="checkbox" id="t_lmk" />
+              </label>
+              <label class="toggle">
+                <span>Kill non‑system apps before launch</span>
+                <input type="checkbox" id="t_kill" />
+              </label>
+              <label class="toggle">
+                <span>Keep stock DPI</span>
+                <input type="checkbox" id="t_dpi" checked />
+              </label>
+            </div>
+            <div class="small muter mt12">This is a frontend demo. No device changes are performed.</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 12h12M6 12l-3 3m3-3l-3-3M18 12l3-3m-3 3l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Recently Added Games (Mock)</div>
+            <div id="games" class="grid mt12" style="grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px;"></div>
+            <div class="small muter mt8">Add/remove actions are mocked and saved in browser only.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section class="section scroll-animate">
+        <h2 class="display" style="font-size:22px; margin-bottom: 12px;">Features</h2>
+        <div class="grid features">
+          <div class="card"><div class="card-title" style="color: var(--text);"><span style="color:var(--primary)">●</span> Big FPS gains</div><div class="muted mt8 small">Up to +80% in supported scenarios with resolution scaling.</div></div>
+          <div class="card"><div class="card-title" style="color: var(--text);"><span style="color:var(--primary)">●</span> Better battery life</div><div class="muted mt8 small">Lower render cost means cooler, longer sessions.</div></div>
+          <div class="card"><div class="card-title" style="color: var(--text);"><span style="color:var(--primary)">●</span> Lightweight</div><div class="muted mt8 small">Install size under 5 MB with a clean, simple UI.</div></div>
+          <div class="card"><div class="card-title" style="color: var(--text);"><span style="color:var(--primary)">●</span> Smart DPI scaling</div><div class="muted mt8 small">Avoid tiny or oversized UI elements automatically.</div></div>
+          <div class="card"><div class="card-title" style="color: var(--text);"><span style="color:var(--primary)">●</span> Quick restore</div><div class="muted mt8 small">One tap to return to stock DPI.</div></div>
+          <div class="card"><div class="card-title" style="color: var(--text);"><span style="color:var(--primary)">●</span> Aggressive LMK (opt)</div><div class="muted mt8 small">Prioritize RAM for gaming via Shizuku.</div></div>
+        </div>
+      </section>
+
+      <!-- SETUP + USAGE -->
+      <section class="section scroll-animate">
+        <div class="row-split">
+          <div class="card">
+            <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="7" y="2" width="10" height="20" rx="2" stroke="currentColor" stroke-width="2"/></svg> Setup (Shizuku)</div>
+            <div class="mt12 grid" style="gap:10px;">
+              <div class="list-num"><div class="num num-amber">1</div><div>Install the latest Elite build from Releases</div></div>
+              <div class="list-num"><div class="num num-amber">2</div><div>Install Shizuku from Google Play or official site</div></div>
+              <div class="list-num"><div class="num num-amber">3</div><div>Start Shizuku (root or wireless debugging)</div></div>
+              <div class="list-num"><div class="num num-amber">4</div><div>Launch Elite and tap “Grant via Shizuku”</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M10 5h4M7 10h10M9 15h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Usage</div>
+            <div class="mt12 grid" style="gap:10px;">
+              <div class="list-num"><div class="num num-emerald">1</div><div>Open Elite, choose resolution scale and DPI</div></div>
+              <div class="list-num"><div class="num num-emerald">2</div><div>Optionally enable LMK / pre-launch app kill (advanced)</div></div>
+              <div class="list-num"><div class="num num-emerald">3</div><div>Launch your game from Elite for best results</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="section scroll-animate">
+        <h2 class="display" style="font-size:22px; margin-bottom: 12px;">Screenshots</h2>
+        <div id="gallery" class="grid gallery">
+          <div class="thumb scroll-animate">
+            <img src="lac.webp" alt="LAC Screenshot" />
+          </div>
+          <div class="thumb scroll-animate">
+            <img src="bgmi.webp" alt="BGMI Screenshot" />
+          </div>
+          <div class="thumb scroll-animate">
+            <img src="codm.webp" alt="CoD Mobile Screenshot" />
+          </div>
+          <div class="thumb scroll-animate">
+            <img src="screenshort 2.jpg" alt="Screenshot 2" />
+          </div>
+          <div class="thumb scroll-animate">
+            <img src="icon.jpg" alt="Elite Icon" />
+          </div>
+          <!-- You can add more images here if needed -->
+        </div>
+      </section>
+
+      <!-- CREDITS -->
+      <section class="section scroll-animate">
+        <div class="card">
+          <div class="flex" style="align-items:center; gap:12px;">
+            <div class="brand-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+            <div>
+              <div style="font-weight:700;">Divyansh Nagda</div>
+              <div class="small muter">Maintainer / Developer</div>
+            </div>
+            <a class="btn btn-outline right small" href="https://github.com/DivyanshNagda/EliteGaming/releases/latest" target="_blank" rel="noreferrer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Get Latest Release
+            </a>
+          </div>
+          <div class="small muter mt12">Inspired by community contributions from Mathias Boulay.</div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="container flex" style="justify-content: space-between; flex-wrap: wrap;">
+      <div>© <span id="year"></span> Elite. All rights reserved.</div>
+      <div class="flex">
+<<<<<<< HEAD
+        <a class="muter" href="privacy.html">Privacy Policy</a>
+        <span>·</span>
+=======
+>>>>>>> f44e08a6f20f1e2ce0dbeb97a4cbb4c6b2c5c17f
+        <a class="muter" href="https://github.com/DivyanshNagda/EliteGaming/releases/latest" target="_blank" rel="noreferrer">Releases</a>
+        <span>·</span>
+        <a class="muter" href="https://github.com/DivyanshNagda" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Brand + assets
+    const BRAND = {
+      primary: "#F59E0B",
+      secondary: "#10B981",
+      background: "#0F0F0F",
+      textLight: "#D1D5DB",
+    };
+    const REPO = "DivyanshNagda/EliteGaming";
+    const ASSETS = {
+      iconUrl: "../Images/icon%20%20cut.jpg",
+      gallery: [
+        "../Images/6f66c718-1694-44d3-83a1-d23388c6d14d.jpg",
+        "../Images/82a1b49a-2d29-41c3-a719-3b714afba12e.jpg",
+      ]
+    };
+
+    // Scroll animation observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Observe all scroll-animate elements
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Brand icon
+    (function(){
+      const el = document.getElementById("brandIcon");
+      const img = new Image();
+      img.src = ASSETS.iconUrl;
+      img.alt = "Elite Icon";
+      img.onerror = () => {
+        el.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
+      };
+      img.onload = () => {
+        el.innerHTML = "";
+        el.appendChild(img);
+      };
+    })();
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Gallery is now hardcoded in HTML; removed dynamic population
+
+    // Configurator (mock only)
+    const STORAGE_KEY = "elite-config-standalone";
+    function loadCfg(){
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || null;
+      } catch(e){
+        return null;
+      }
+    }
+    function saveCfg(cfg){
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+      } catch(e){}
+    }
+    function defaultCfg(){
+      return {
+        renderScale: 100,
+        keepStockDpi: true,
+        aggressiveLmk: false,
+        killApps: false,
+        nativeRes: "2160x1080"
+      };
+    }
+    function calcTweakedResolution(nativeRes, scale){
+      const [hStr, wStr] = nativeRes.split("x");
+      const h = parseInt(hStr,10), w = parseInt(wStr,10);
+      const f = Math.max(0.5, Math.min(1, scale/100));
+      return `${Math.round(h*f)}x${Math.round(w*f)}`;
+    }
+    function estimateFps(scale){
+      const x = (100 - scale) / 50; // 0..1 for 100..50
+      const gain = Math.round(Math.max(0, (1/(1+Math.exp(-6*(x-0.5))) - 0.27) * 115));
+      return gain;
+    }
+    function renderCfg(){
+      const ring = document.getElementById("fpsRing");
+      const fpsVal = document.getElementById("fpsVal");
+      const nRes = document.getElementById("nativeRes");
+      const tRes = document.getElementById("tweakedRes");
+      const scale = document.getElementById("scale");
+      const scaleVal = document.getElementById("scaleVal");
+      const cfg = window.eliteCfg;
+      const fps = estimateFps(cfg.renderScale);
+      const pct = Math.max(0, Math.min(120, fps));
+      ring.style.background = `conic-gradient(${BRAND.primary} ${pct}%, #1f2937 ${pct}% 100%)`;
+      fpsVal.textContent = `+${fps}%`;
+      nRes.textContent = cfg.nativeRes;
+      tRes.textContent = calcTweakedResolution(cfg.nativeRes, cfg.renderScale);
+      scale.value = cfg.renderScale;
+      scaleVal.textContent = cfg.renderScale;
+      document.getElementById("t_dpi").checked = !!cfg.keepStockDpi;
+      document.getElementById("t_lmk").checked = !!cfg.aggressiveLmk;
+      document.getElementById("t_kill").checked = !!cfg.killApps;
+    }
+    (function initCfg(){
+      window.eliteCfg = loadCfg() || defaultCfg();
+      renderCfg();
+      document.getElementById("scale").addEventListener("input", e => {
+        eliteCfg.renderScale = parseInt(e.target.value, 10);
+        saveCfg(eliteCfg);
+        renderCfg();
+      });
+      document.getElementById("t_dpi").addEventListener("change", e => {
+        eliteCfg.keepStockDpi = e.target.checked;
+        saveCfg(eliteCfg);
+      });
+      document.getElementById("t_lmk").addEventListener("change", e => {
+        eliteCfg.aggressiveLmk = e.target.checked;
+        saveCfg(eliteCfg);
+      });
+      document.getElementById("t_kill").addEventListener("change", e => {
+        eliteCfg.killApps = e.target.checked;
+        saveCfg(eliteCfg);
+      });
+      // Recently added games with real icons (with fallbacks)
+      function createGameCard(name, iconCandidates){
+        const card = document.createElement("div");
+        card.style.cssText = "background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center;";
+        const img = new Image();
+        img.alt = name;
+        img.style.cssText = "width:56px;height:56px;border-radius:12px;object-fit:cover;display:block;margin:0 auto 8px;background:#111;";
+        let idx = 0;
+        function tryNext(){
+          if(idx < iconCandidates.length){
+            img.src = iconCandidates[idx++];
+          } else {
+            // graceful text placeholder
+            const ph = document.createElement("div");
+            ph.style.cssText = "width:56px;height:56px;border-radius:12px;display:grid;place-items:center;margin:0 auto 8px;background:rgba(255,255,255,0.08);border:1px dashed var(--border);font-weight:700;";
+            ph.textContent = name.slice(0,2).toUpperCase();
+            card.replaceChild(ph, img);
+          }
+        }
+        img.onerror = tryNext;
+        card.appendChild(img);
+        const label = document.createElement("div");
+        label.className = "small";
+        label.textContent = name;
+        card.appendChild(label);
+        tryNext();
+        return card;
+      }
+      const wrap = document.getElementById("games");
+      const games = [
+        { name: "LAC", icons: ["../Images/lac.webp", "../Images/lac.jpg"] },
+        { name: "PUBG", icons: [
+          "../Images/bgmi.webp",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/PUBG_Mobile_logo.svg/256px-PUBG_Mobile_logo.svg.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/PlayerUnknown%27s_Battlegrounds_logo.svg/256px-PlayerUnknown%27s_Battlegrounds_logo.svg.png"
+        ]},
+        { name: "CoD Mobile", icons: [
+          "../Images/codm.webp",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Call_of_Duty_Mobile_logo.svg/256px-Call_of_Duty_Mobile_logo.svg.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Call_of_Duty_logo.svg/256px-Call_of_Duty_logo.svg.png"
+        ]},
+      ];
+      games.forEach(g => wrap.appendChild(createGameCard(g.name, g.icons)));
+    })();
+
+    // GitHub Releases
+    async function fetchLatest(force=false){
+      const url = `https://api.github.com/repos/${REPO}/releases/latest${force ? `?t=${Date.now()}` : ""}`;
+      const r = await fetch(url, { headers: { "Accept": "application/vnd.github+json" }});
+      if(!r.ok) throw new Error("GitHub API error: "+r.status);
+      return await r.json();
+    }
+    function setRelease(data){
+      const relTag = document.getElementById("relTag");
+      const relMeta = document.getElementById("relMeta");
+      const relBody = document.getElementById("relBody");
+      const btnShowMore = document.getElementById("btnShowMore");
+      const assetsWrap = document.getElementById("assets");
+      const downloadsChip = document.getElementById("downloadsTotal");
+      // Tag
+      if(data.tag_name){
+        relTag.style.display = "inline-block";
+        relTag.textContent = data.tag_name;
+      } else relTag.style.display = "none";
+      // Meta
+      const date = data.published_at ? new Date(data.published_at).toLocaleDateString() : "";
+      relMeta.textContent = `${data.name || data.tag_name || "Release"} ${date ? "• "+date : ""}`;
+      // Body excerpt
+      const body = (data.body || "").trim();
+      const max = 320;
+      if(body.length > max){
+        relBody.textContent = body.slice(0, max) + "…";
+        btnShowMore.style.display = "inline-flex";
+        let expanded = false;
+        btnShowMore.onclick = () => {
+          expanded = !expanded;
+          relBody.textContent = expanded ? body : (body.slice(0, max) + "…");
+          btnShowMore.textContent = expanded ? "Show less" : "Show more";
+          btnShowMore.className = "btn btn-outline small mt8";
+        };
+        btnShowMore.textContent = "Show more";
+      } else {
+        relBody.textContent = body;
+        btnShowMore.style.display = "none";
+      }
+      // Assets
+      assetsWrap.innerHTML = "";
+      let totalDownloads = 0;
+      (data.assets || []).forEach(a => {
+        totalDownloads += (a.download_count || 0);
+        const row = document.createElement("div");
+        row.className = "flex";
+        row.style.cssText = "align-items:center; justify-content:space-between; background:rgba(255,255,255,0.06); border:1px solid var(--border); border-radius:10px; padding:12px;";
+        const name = document.createElement("div");
+        name.className = "small";
+        name.textContent = a.name;
+        const btn = document.createElement("a");
+        btn.href = a.browser_download_url || a.download_url || "#";
+        btn.className = "btn btn-amber small";
+        btn.target = "_blank";
+        btn.rel = "noreferrer";
+        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="#111" stroke-width="2" stroke-linecap="round"/><path d="M7 10l5 5 5-5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg> Download';
+        row.appendChild(name);
+        row.appendChild(btn);
+        assetsWrap.appendChild(row);
+      });
+      if(totalDownloads>0){
+        downloadsChip.style.display = "inline-block";
+        downloadsChip.textContent = `Downloads: ${totalDownloads}`;
+      } else downloadsChip.style.display = "none";
+    }
+    (async function initReleases(){
+      const btn = document.getElementById("btnRefresh");
+      const load = async(force=false)=>{
+        try{
+          const data = await fetchLatest(force);
+          setRelease(data);
+        } catch(e){
+          document.getElementById("relMeta").textContent = "Could not load release details. Visit GitHub Releases.";
+        }
+      };
+      btn.onclick = ()=>load(true);
+      load(false);
+    })();
+  </script>
+</body>
+<<<<<<< HEAD
+</html>
+=======
+</html>
+>>>>>>> f44e08a6f20f1e2ce0dbeb97a4cbb4c6b2c5c17f
